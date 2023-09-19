@@ -6,7 +6,7 @@ import io.cucumber.junit.Cucumber;
 import io.cucumber.junit.CucumberOptions;
 
 @RunWith(Cucumber.class)
-@CucumberOptions(features = "src/bbd/resources", monochrome = true)
+@CucumberOptions(features = "src/bdd/resources", monochrome = true)
 public class SchoolSwingAppBDD {
 
 }
