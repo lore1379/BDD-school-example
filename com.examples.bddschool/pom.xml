@@ -151,6 +151,12 @@
         <version>${failsafe.version}</version>
         <executions>
           <execution>
+            <goals>
+              <goal>integration-test</goal>
+              <goal>verify</goal>
+            </goals>
+          </execution>
+          <execution>
             <id>bdd-tests</id>
             <goals>
               <goal>integration-test</goal>
