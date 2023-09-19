@@ -28,9 +28,21 @@
     <build.helper.version>3.0.0</build.helper.version>
     <failsafe.version>2.22.2</failsafe.version>
     <cucumber.version>5.5.0</cucumber.version>
+    <mongo.driver.version>3.9.1</mongo.driver.version>
   </properties>
 
   <dependencies>
+    <dependency>
+      <groupId>org.mongodb</groupId>
+      <artifactId>mongo-java-driver</artifactId>
+      <version>${mongo.driver.version}</version>
+    </dependency>
+    <dependency>
+      <!-- required to see Mongo Java Driver logs -->
+      <groupId>ch.qos.logback</groupId>
+      <artifactId>logback-classic</artifactId>
+      <version>1.2.3</version>
+    </dependency>
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
