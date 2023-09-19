@@ -30,6 +30,8 @@
     <cucumber.version>5.5.0</cucumber.version>
     <mongo.driver.version>3.9.1</mongo.driver.version>
     <docker.version>0.34.1</docker.version>
+    <picocli.version>4.2.0</picocli.version>
+    <logback.version>1.2.3</logback.version>
   </properties>
 
   <dependencies>
@@ -42,7 +44,12 @@
       <!-- required to see Mongo Java Driver logs -->
       <groupId>ch.qos.logback</groupId>
       <artifactId>logback-classic</artifactId>
-      <version>1.2.3</version>
+      <version>${logback.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>info.picocli</groupId>
+      <artifactId>picocli</artifactId>
+      <version>${picocli.version}</version>
     </dependency>
     <dependency>
       <groupId>junit</groupId>
