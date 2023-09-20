@@ -36,6 +36,7 @@ public class StudentSwingViewTest extends AssertJSwingJUnitTestCase {
 		window.label(JLabelMatcher.withText("name"));
 		window.textBox("nameTextBox").requireEnabled();
 		window.button(JButtonMatcher.withText("Add")).requireDisabled();
+		window.list("studentList");
 	}
 	
 	@Test
