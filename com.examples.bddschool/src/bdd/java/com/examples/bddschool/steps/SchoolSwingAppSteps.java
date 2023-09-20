@@ -1,5 +1,13 @@
 package com.examples.bddschool.steps;
 
+import static org.assertj.swing.launcher.ApplicationLauncher.application;
+
+import javax.swing.JFrame;
+
+import org.assertj.swing.core.BasicRobot;
+import org.assertj.swing.core.GenericTypeMatcher;
+import org.assertj.swing.finder.WindowFinder;
+import org.assertj.swing.fixture.FrameFixture;
 import org.bson.Document;
 
 import com.mongodb.MongoClient;
@@ -46,8 +54,20 @@ public class SchoolSwingAppSteps {
 
 	@Given("The Student View is shown")
 	public void the_Student_View_is_shown() {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new io.cucumber.java.PendingException();
+		application("com.examples.bddschool.app.swing.SchoolSwingApp")
+			.withArgs(
+				"--mongo-host=" + "localhost",
+				"--mongo-port=" + Integer.toString(mongoPort),
+				"--db-name=" + DB_NAME,
+				"--db-collection=" + COLLECTION_NAME
+			)
+			.start();
+		FrameFixture window = WindowFinder.findFrame(new GenericTypeMatcher<JFrame>(JFrame.class) {
+			@Override
+			protected boolean isMatching(JFrame frame) {
+				return "Student View".equals(frame.getTitle()) && frame.isShowing();
+			}
+		}).using(BasicRobot.robotWithCurrentAwtHierarchy());
 	}
 
 	@Given("The user provides student data in the text fields")
