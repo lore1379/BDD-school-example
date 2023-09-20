@@ -1,17 +1,20 @@
 package com.examples.bddschool.controller;
 
-import com.examples.bddschool.repository.mongo.StudentMongoRepository;
-import com.examples.bddschool.view.swing.StudentSwingView;
+import com.examples.bddschool.repository.StudentRepository;
+import com.examples.bddschool.view.StudentView;
 
 public class SchoolController {
+	
+	private StudentView studentView;
+	private StudentRepository studentRepository;
 
-	public SchoolController(StudentSwingView studentView, StudentMongoRepository studentRepository) {
-		// TODO Auto-generated constructor stub
+	public SchoolController(StudentView studentView, StudentRepository studentRepository) {
+		this.studentView = studentView;
+		this.studentRepository = studentRepository;
 	}
 
 	public void allStudents() {
-		// TODO Auto-generated method stub
-		
+		studentView.showAllStudents(studentRepository.findAll());
 	}
 
 }

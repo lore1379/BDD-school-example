@@ -5,6 +5,9 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import com.examples.bddschool.controller.SchoolController;
+import com.examples.bddschool.model.Student;
+import com.examples.bddschool.view.StudentView;
+
 import java.awt.GridBagLayout;
 import javax.swing.JLabel;
 import java.awt.GridBagConstraints;
@@ -12,10 +15,11 @@ import javax.swing.JTextField;
 import java.awt.Insets;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.util.List;
 
 import javax.swing.JButton;
 
-public class StudentSwingView extends JFrame {
+public class StudentSwingView extends JFrame implements StudentView {
 
 	/**
 	 * 
@@ -103,6 +107,12 @@ public class StudentSwingView extends JFrame {
 		gbc_btnAdd.gridx = 0;
 		gbc_btnAdd.gridy = 2;
 		contentPane.add(btnAdd, gbc_btnAdd);
+	}
+
+	@Override
+	public void showAllStudents(List<Student> studends) {
+		// TODO Auto-generated method stub
+		
 	}
 
 
