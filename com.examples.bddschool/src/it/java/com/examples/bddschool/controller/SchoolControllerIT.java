@@ -60,5 +60,14 @@ public class SchoolControllerIT {
 		verify(studentView)
 			.showAllStudents(asList(student));
 	}
+	
+	@Test
+	public void testNewStudent() {
+		Student student = new Student("1", "test");
+		schoolController.newStudent(student);
+		verify(studentView)
+			.studentAdded(student);
+		
+	}
 
 }
