@@ -1,5 +1,6 @@
 package com.examples.bddschool.repository.mongo;
 
+import java.util.Collections;
 import java.util.List;
 
 import com.examples.bddschool.model.Student;
@@ -8,14 +9,14 @@ import com.mongodb.MongoClient;
 
 public class StudentMongoRepository implements StudentRepository{
 
-	public StudentMongoRepository(MongoClient mongoClient, String string, String string2) {
-		// TODO Auto-generated constructor stub
+	public StudentMongoRepository(MongoClient mongoClient, 
+			String databaseName, String collectionName) {
+
 	}
 
 	@Override
 	public List<Student> findAll() {
-		// TODO Auto-generated method stub
-		return null;
+		return Collections.emptyList();
 	}
 
 	@Override
