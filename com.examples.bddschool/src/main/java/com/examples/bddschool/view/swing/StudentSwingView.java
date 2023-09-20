@@ -115,5 +115,11 @@ public class StudentSwingView extends JFrame implements StudentView {
 		
 	}
 
+	@Override
+	public void studentAdded(Student student) {
+		// TODO Auto-generated method stub
+		
+	}
+
 
 }

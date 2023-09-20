@@ -1,6 +1,7 @@
 package com.examples.bddschool.controller;
 
 import static java.util.Arrays.asList;
+import static org.mockito.Mockito.inOrder;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
@@ -9,6 +10,7 @@ import java.util.List;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import org.mockito.InOrder;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
@@ -47,6 +49,18 @@ public class SchoolControllerTest {
 			thenReturn(studends);
 		schoolController.allStudents();
 		verify(studentView).showAllStudents(studends);
+	}
+	
+	@Test
+	public void testNewStudentWhenStudentDoesNotAlreadyExist() {
+		Student student = new Student ("1", "test");
+		when(studentRepository.findById("1")).
+			thenReturn(null);
+		schoolController.newStudent(student);
+		InOrder inOrder = inOrder(studentRepository, studentView);
+		inOrder.verify(studentRepository).save(student);
+		inOrder.verify(studentView).studentAdded(student);
+		
 	}
 
 }
