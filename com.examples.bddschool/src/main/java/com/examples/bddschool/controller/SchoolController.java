@@ -19,8 +19,8 @@ public class SchoolController {
 	}
 
 	public void newStudent(Student student) {
-		// TODO Auto-generated method stub
-		
+		studentRepository.save(student);
+		studentView.studentAdded(student);
 	}
 
 }
