@@ -33,6 +33,7 @@ public class SchoolSwingAppSteps {
 	static final String STUDENT_FIXTURE_1_ID = "1";
 	
 	private MongoClient mongoClient;
+	private FrameFixture window;
 
 	@Before
 	public void setup() {		
@@ -44,6 +45,8 @@ public class SchoolSwingAppSteps {
 	@After
 	public void tearDown() {
 		mongoClient.close();
+		if (window != null)
+			window.cleanUp();
 	}
 	
 	@Given("The database contains a few students")
@@ -62,7 +65,7 @@ public class SchoolSwingAppSteps {
 				"--db-collection=" + COLLECTION_NAME
 			)
 			.start();
-		FrameFixture window = WindowFinder.findFrame(new GenericTypeMatcher<JFrame>(JFrame.class) {
+		window = WindowFinder.findFrame(new GenericTypeMatcher<JFrame>(JFrame.class) {
 			@Override
 			protected boolean isMatching(JFrame frame) {
 				return "Student View".equals(frame.getTitle()) && frame.isShowing();
