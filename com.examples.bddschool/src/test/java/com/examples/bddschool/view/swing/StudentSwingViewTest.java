@@ -36,4 +36,11 @@ public class StudentSwingViewTest extends AssertJSwingJUnitTestCase {
 		window.textBox("nameTextBox").requireEnabled();
 		window.button(JButtonMatcher.withText("Add")).requireDisabled();
 	}
+	
+	@Test
+	public void testWhenIdAndNameAreNonEmptyThenAddButtonShouldBeEnabled() {
+		window.textBox("idTextBox").enterText("1");
+		window.textBox("nameTextBox").enterText("test");
+		window.button(JButtonMatcher.withText("Add")).requireEnabled();
+	}
 }
