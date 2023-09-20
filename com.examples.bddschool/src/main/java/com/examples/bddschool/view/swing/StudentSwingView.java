@@ -36,10 +36,11 @@ public class StudentSwingView extends JFrame implements StudentView {
 	private JList<Student> listStudents;
 	private JScrollPane scrollPane;
 	private DefaultListModel<Student> listStudentsModel;
+	
+	private SchoolController schoolController;
 
 	public void setSchoolController(SchoolController schoolController) {
-		// TODO Auto-generated method stub
-		
+		this.schoolController = schoolController;
 	}
 
 	/**
@@ -109,6 +110,8 @@ public class StudentSwingView extends JFrame implements StudentView {
 		
 		btnAdd = new JButton("Add");
 		btnAdd.setEnabled(false);
+		btnAdd.addActionListener(
+				e -> schoolController.newStudent(new Student(txtId.getText(), txtName.getText())));
 		GridBagConstraints gbc_btnAdd = new GridBagConstraints();
 		gbc_btnAdd.insets = new Insets(0, 0, 5, 0);
 		gbc_btnAdd.gridwidth = 2;
