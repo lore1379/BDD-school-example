@@ -2,6 +2,9 @@ package com.examples.bddschool.repository.mongo;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
+
 import org.bson.Document;
 import org.junit.After;
 import org.junit.Before;
@@ -68,6 +71,17 @@ public class StudentMongoRepositoryDockerIT {
 		addTestStudentToDatabase("2", "test2");
 		assertThat(studentRepository.findById("2"))
 			.isEqualTo(new Student("2", "test2"));
+	}
+	
+	@Test
+	public void testSave() {
+		Student student = new Student("1", "addedStudent");
+		studentRepository.save(student);
+		assertThat(StreamSupport
+				.stream(studentCollection.find().spliterator(), false)
+				.map(d -> new Student(""+d.get("id"), ""+d.get("name")))
+				.collect(Collectors.toList()))
+			.containsExactly(student);
 	}
 	
 	private void addTestStudentToDatabase(String id, String name) {
