@@ -20,7 +20,7 @@
     
     <junit.version>4.12</junit.version>
     <assertj.swing.version>3.17.1</assertj.swing.version>
-    <mockito.version>2.23.0</mockito.version>
+    <mockito.version>4.11.0</mockito.version>
     <jacoco.version>0.8.6</jacoco.version>
     <coveralls.version>4.3.0</coveralls.version>
     <surefire.report.version>2.22.2</surefire.report.version>
