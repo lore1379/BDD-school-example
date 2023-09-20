@@ -27,7 +27,7 @@ public class StudentMongoRepository implements StudentRepository{
 	public List<Student> findAll() {
 		return StreamSupport
 				.stream(studentCollection.find().spliterator(), false)
-				.map(d -> new Student(""+d.get("id"), ""+d.get("name")))
+				.map(this::fromDocumentToStudent)
 				.collect(Collectors.toList());
 	}
 
@@ -35,7 +35,7 @@ public class StudentMongoRepository implements StudentRepository{
 	public Student findById(String id) {
 		Document d = studentCollection.find(Filters.eq("id", id)).first();
 		if (d != null) {
-			return new Student(""+d.get("id"), ""+d.get("name"));
+			return fromDocumentToStudent(d);
 		}
 		return null;
 	}
@@ -44,6 +44,10 @@ public class StudentMongoRepository implements StudentRepository{
 	public void save(Student student) {
 		// TODO Auto-generated method stub
 		
+	}
+	
+	private Student fromDocumentToStudent(Document d) {
+		return new Student(""+d.get("id"), ""+d.get("name"));
 	}
 
 }
