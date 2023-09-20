@@ -18,6 +18,9 @@ import java.awt.event.KeyEvent;
 import java.util.List;
 
 import javax.swing.JButton;
+import javax.swing.JList;
+import javax.swing.ListSelectionModel;
+import javax.swing.JScrollPane;
 
 public class StudentSwingView extends JFrame implements StudentView {
 
@@ -29,6 +32,8 @@ public class StudentSwingView extends JFrame implements StudentView {
 	private JTextField txtId;
 	private JTextField txtName;
 	private JButton btnAdd;
+	private JList<Student> list;
+	private JScrollPane scrollPane;
 
 	public void setSchoolController(SchoolController schoolController) {
 		// TODO Auto-generated method stub
@@ -48,9 +53,9 @@ public class StudentSwingView extends JFrame implements StudentView {
 		setContentPane(contentPane);
 		GridBagLayout gbl_contentPane = new GridBagLayout();
 		gbl_contentPane.columnWidths = new int[]{0, 0, 0};
-		gbl_contentPane.rowHeights = new int[]{0, 0, 0, 0};
+		gbl_contentPane.rowHeights = new int[]{0, 0, 0, 0, 0};
 		gbl_contentPane.columnWeights = new double[]{0.0, 1.0, Double.MIN_VALUE};
-		gbl_contentPane.rowWeights = new double[]{0.0, 0.0, 0.0, Double.MIN_VALUE};
+		gbl_contentPane.rowWeights = new double[]{0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE};
 		contentPane.setLayout(gbl_contentPane);
 		
 		JLabel lblId = new JLabel("id");
@@ -103,10 +108,25 @@ public class StudentSwingView extends JFrame implements StudentView {
 		btnAdd = new JButton("Add");
 		btnAdd.setEnabled(false);
 		GridBagConstraints gbc_btnAdd = new GridBagConstraints();
+		gbc_btnAdd.insets = new Insets(0, 0, 5, 0);
 		gbc_btnAdd.gridwidth = 2;
 		gbc_btnAdd.gridx = 0;
 		gbc_btnAdd.gridy = 2;
 		contentPane.add(btnAdd, gbc_btnAdd);
+		
+		scrollPane = new JScrollPane();
+		GridBagConstraints gbc_scrollPane = new GridBagConstraints();
+		gbc_scrollPane.fill = GridBagConstraints.BOTH;
+		gbc_scrollPane.gridwidth = 2;
+		gbc_scrollPane.insets = new Insets(0, 0, 0, 5);
+		gbc_scrollPane.gridx = 0;
+		gbc_scrollPane.gridy = 3;
+		contentPane.add(scrollPane, gbc_scrollPane);
+		
+		list = new JList<Student>();
+		scrollPane.setViewportView(list);
+		list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		list.setName("studentList");
 	}
 
 	@Override
