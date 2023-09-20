@@ -1,5 +1,6 @@
 package com.examples.bddschool.steps;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.swing.launcher.ApplicationLauncher.application;
 
 import javax.swing.JFrame;
@@ -87,8 +88,8 @@ public class SchoolSwingAppSteps {
 
 	@Then("The list contains the new student")
 	public void the_list_contains_the_new_student() {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new io.cucumber.java.PendingException();
+		assertThat(window.list().contents())
+			.anySatisfy(e -> assertThat(e).contains("10", "new student"));
 	}
 
 	private void addStudentToDatabase(String id, String name) {
