@@ -17,6 +17,7 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.util.List;
 
+import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JList;
 import javax.swing.ListSelectionModel;
@@ -32,8 +33,9 @@ public class StudentSwingView extends JFrame implements StudentView {
 	private JTextField txtId;
 	private JTextField txtName;
 	private JButton btnAdd;
-	private JList<Student> list;
+	private JList<Student> listStudents;
 	private JScrollPane scrollPane;
+	private DefaultListModel<Student> listStudentsModel;
 
 	public void setSchoolController(SchoolController schoolController) {
 		// TODO Auto-generated method stub
@@ -123,16 +125,16 @@ public class StudentSwingView extends JFrame implements StudentView {
 		gbc_scrollPane.gridy = 3;
 		contentPane.add(scrollPane, gbc_scrollPane);
 		
-		list = new JList<Student>();
-		scrollPane.setViewportView(list);
-		list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		list.setName("studentList");
+		listStudentsModel = new DefaultListModel<>();
+		listStudents = new JList<>(listStudentsModel);
+		scrollPane.setViewportView(listStudents);
+		listStudents.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		listStudents.setName("studentList");
 	}
 
 	@Override
 	public void showAllStudents(List<Student> studends) {
-		// TODO Auto-generated method stub
-		
+		studends.stream().forEach(listStudentsModel::addElement);	
 	}
 
 	@Override
