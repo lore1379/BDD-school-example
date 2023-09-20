@@ -1,5 +1,7 @@
 package com.examples.bddschool.view.swing;
 
+import org.assertj.swing.annotation.GUITest;
+import org.assertj.swing.core.matcher.JLabelMatcher;
 import org.assertj.swing.edt.GuiActionRunner;
 import org.assertj.swing.fixture.FrameFixture;
 import org.assertj.swing.junit.runner.GUITestRunner;
@@ -12,6 +14,7 @@ public class StudentSwingViewTest extends AssertJSwingJUnitTestCase {
 
 
 	private StudentSwingView studentSwingView;
+	private FrameFixture window;
 
 	@Override
 	protected void onSetUp() throws Exception {
@@ -20,11 +23,15 @@ public class StudentSwingViewTest extends AssertJSwingJUnitTestCase {
 			studentSwingView = new StudentSwingView();
 			return studentSwingView;
 		});	
-		FrameFixture window = new FrameFixture(robot(), studentSwingView);
+		window = new FrameFixture(robot(), studentSwingView);
 		window.show();	
 	}
 
-	@Test
-	public void test() {
+	@Test @GUITest
+	public void testControlsInitialStates() {
+		window.label(JLabelMatcher.withText("id"));
+		window.textBox("idTextBox").requireEnabled();
+		window.label(JLabelMatcher.withText("name"));
+		window.textBox("nameTextBox").requireEnabled();
 	}
 }
