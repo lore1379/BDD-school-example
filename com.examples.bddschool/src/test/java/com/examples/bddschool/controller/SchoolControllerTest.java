@@ -1,8 +1,10 @@
 package com.examples.bddschool.controller;
 
 import static java.util.Arrays.asList;
+import static org.mockito.Mockito.ignoreStubs;
 import static org.mockito.Mockito.inOrder;
 import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.verifyNoMoreInteractions;
 import static org.mockito.Mockito.when;
 
 import java.util.List;
@@ -61,6 +63,18 @@ public class SchoolControllerTest {
 		inOrder.verify(studentRepository).save(student);
 		inOrder.verify(studentView).studentAdded(student);
 		
+	}
+	
+	@Test
+	public void testNewStudentWhenStudentAlreadyExists() {
+		Student studentToAdd = new Student ("1", "test");
+		Student existingStudent = new Student ("1", "name");
+		when(studentRepository.findById("1")).
+			thenReturn(existingStudent);
+		schoolController.newStudent(studentToAdd);
+		verify(studentView)
+			.showError("Already existing student with id 1", existingStudent);
+		verifyNoMoreInteractions(ignoreStubs(studentRepository));
 	}
 
 }

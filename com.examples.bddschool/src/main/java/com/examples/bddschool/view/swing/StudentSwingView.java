@@ -121,5 +121,11 @@ public class StudentSwingView extends JFrame implements StudentView {
 		
 	}
 
+	@Override
+	public void showError(String string, Student existingStudent) {
+		// TODO Auto-generated method stub
+		
+	}
+
 
 }
