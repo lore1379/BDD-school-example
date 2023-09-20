@@ -75,8 +75,8 @@ public class SchoolSwingAppSteps {
 
 	@Given("The user provides student data in the text fields")
 	public void the_user_provides_student_data_in_the_text_fields() {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new io.cucumber.java.PendingException();
+		window.textBox("idTextBox").enterText("10");
+	    window.textBox("nameTextBox").enterText("new student");
 	}
 
 	@When("The user clicks the {string} button")
