@@ -96,6 +96,17 @@ public class StudentSwingViewTest extends AssertJSwingJUnitTestCase {
 	}
 	
 	@Test
+	public void testStudentAddedShouldAddTheStudentToTheList() {
+		Student student = new Student("1", "test1");
+		GuiActionRunner.execute(() -> 
+			studentSwingView.studentAdded(new Student("1", "test1"))
+		);
+		String[] listContents = window.list().contents();
+		assertThat(listContents)
+			.containsExactly(student.toString());
+	}
+	
+	@Test
 	public void testAddButtonShouldDelegateToSchoolControllerNewStudent() {
 		window.textBox("idTextBox").enterText("1");
 		window.textBox("nameTextBox").enterText("test");
