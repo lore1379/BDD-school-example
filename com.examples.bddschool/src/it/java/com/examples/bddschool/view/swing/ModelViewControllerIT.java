@@ -13,7 +13,6 @@ import org.junit.runner.RunWith;
 import com.examples.bddschool.controller.SchoolController;
 import com.examples.bddschool.model.Student;
 import com.examples.bddschool.repository.mongo.StudentMongoRepository;
-import com.examples.bddschool.view.swing.StudentSwingView;
 import com.mongodb.MongoClient;
 import com.mongodb.ServerAddress;
 import com.mongodb.client.MongoDatabase;
