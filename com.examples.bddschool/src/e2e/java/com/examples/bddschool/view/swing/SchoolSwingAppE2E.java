@@ -29,6 +29,11 @@ public class SchoolSwingAppE2E extends AssertJSwingJUnitTestCase{
 
 	private MongoClient mongoClient;
 	private FrameFixture window;
+	
+	private static final String STUDENT_FIXTURE_2_NAME = "second student";
+	private static final String STUDENT_FIXTURE_2_ID = "2";
+	private static final String STUDENT_FIXTURE_1_NAME = "first student";
+	private static final String STUDENT_FIXTURE_1_ID = "1";
 
 	@Override
 	protected void onSetUp() throws Exception {
@@ -36,8 +41,8 @@ public class SchoolSwingAppE2E extends AssertJSwingJUnitTestCase{
 		mongoClient = new MongoClient(
 				new ServerAddress("localhost", mongoPort));
 		mongoClient.getDatabase(DB_NAME).drop();
-		addTestStudentToDatabase("1", "first student");
-		addTestStudentToDatabase("2", "second student");
+		addTestStudentToDatabase(STUDENT_FIXTURE_1_ID, STUDENT_FIXTURE_1_NAME);
+		addTestStudentToDatabase(STUDENT_FIXTURE_2_ID, STUDENT_FIXTURE_2_NAME);
 		application("com.examples.bddschool.app.swing.SchoolSwingApp")
 			.withArgs(
 				"--mongo-host=" + "localhost",
@@ -57,8 +62,8 @@ public class SchoolSwingAppE2E extends AssertJSwingJUnitTestCase{
 	@Test @GUITest
 	public void testOnStartAllDatabaseElementsAreShown() {
 		assertThat(window.list().contents())
-			.anySatisfy(e -> assertThat(e).contains("1", "first student"))
-			.anySatisfy(e -> assertThat(e).contains("2", "second student"));
+		.anySatisfy(e -> assertThat(e).contains(STUDENT_FIXTURE_1_ID, STUDENT_FIXTURE_1_NAME))
+		.anySatisfy(e -> assertThat(e).contains(STUDENT_FIXTURE_2_ID, STUDENT_FIXTURE_2_NAME));
 	}
 
 	private void addTestStudentToDatabase(String id, String name) {
